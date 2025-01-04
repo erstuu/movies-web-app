@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('email', 255)->unique();
             $table->string('password', 255);
             $table->timestamp('email_verified_at')->nullable();
-            $table->timestamps();
             $table->uuid('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->timestamps();
         });
     }
 
