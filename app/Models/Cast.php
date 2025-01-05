@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Cast extends Model
 {
@@ -18,12 +17,8 @@ class Cast extends Model
         'avatar',
     ];
 
-    protected static function boot()
+    public function castMovies()
     {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->id = (string) Str::uuid();
-        });
+        return $this->hasMany(CastMovie::class);
     }
 }

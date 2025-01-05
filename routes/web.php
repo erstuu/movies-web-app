@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\View\DashBoardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\View\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[HomeController::class, 'index']);
 
-Route::view('/dashboard', 'dashboard');
+Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard.index');
+Route::post('/dashboard/movie', [DashBoardController::class, 'insert'])->name('dashboard.movie.insert');

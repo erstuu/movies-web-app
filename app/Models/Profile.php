@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Profile extends Model
 {
@@ -18,12 +18,8 @@ class Profile extends Model
         'user_id'
     ];
 
-    protected static function boot()
+    public function user(): BelongsTo
     {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->id = Str::uuid();
-        });
+        return $this->belongsTo(User::class);
     }
 }

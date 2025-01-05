@@ -14,12 +14,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Movies Dashboard</title>
     <!-- CSS files -->
-    <link href="{{ asset('css/tabler.min.css') }}?1692870487" rel="stylesheet"/>
-    <link href="{{ asset('css/tabler-flags.min.css') }}?1692870487" rel="stylesheet"/>
-    <link href="{{ asset('css/tabler-payments.min.css') }}?1692870487" rel="stylesheet"/>
-    <link href="{{ asset('css/tabler-vendors.min.css') }}?1692870487" rel="stylesheet"/>
-    <link href="{{ asset('css/demo.min.css') }}?1692870487" rel="stylesheet"/>
-    <style>
+    <link href="{{ asset('dist/css/tabler.min.css') }}?1692870487" rel="stylesheet"/>
+    <link href="{{ asset('dist/css/tabler-flags.min.css') }}?1692870487" rel="stylesheet"/>
+    <link href="{{ asset('dist/css/tabler-payments.min.css') }}?1692870487" rel="stylesheet"/>
+    <link href="{{ asset('dist/css/tabler-vendors.min.css') }}?1692870487" rel="stylesheet"/>
+    <link href="{{ asset('dist/css/demo.min.css') }}?1692870487" rel="stylesheet"/>
+	<link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    
+	<style>
       @import url('https://rsms.me/inter/inter.css');
       :root {
       	--tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
@@ -30,7 +34,7 @@
     </style>
   </head>
   <body >
-    <script src="./dist/js/demo-theme.min.js?1692870487"></script>
+	<script src="{{ asset('dist/js/demo-theme.min.js') }}?1692870487"></script>
     <div class="page">
       <!-- Navbar -->
       <header class="navbar navbar-expand-md d-print-none" >
@@ -178,7 +182,9 @@
       </header>
       <div class="page-wrapper">
         
-        @yield('content')
+        <main>
+			@yield('content')
+		</main>
 
         <footer class="footer footer-transparent d-print-none">
           <div class="container-xl">
@@ -216,14 +222,30 @@
         </footer>
       </div>
     </div>
-    <!-- Libs JS -->
-    <script src="{{ asset('js/libs/apexcharts/dist/apexcharts.min.js') }}?1692870487" defer></script>
-    <script src="{{ asset('js/libs/jsvectormap/dist/js/jsvectormap.min.js') }}?1692870487" defer></script>
-    <script src="{{ asset('js/libs/jsvectormap/dist/maps/world.js') }}?1692870487" defer></script>
-    <script src="{{ asset('js/libs/jsvectormap/dist/maps/world-merc.js') }}?1692870487" defer></script>
-    <!-- Tabler Core -->
-    <script src="{{ asset('js/tabler.min.js') }}?1692870487" defer></script>
-    <script src="{{ asset('js/demo.min.js') }}?1692870487" defer></script>
+	<!-- jQuery and DataTables -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+	<script src="https://cdn.datatables.net/2.1.8/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="{{ asset('dist/js/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+	<script src="{{ asset('dist/js/libs/jsvectormap/dist/js/jsvectormap.min.js') }}"></script>
+	<script src="{{ asset('dist/js/libs/jsvectormap/dist/maps/world.js') }}"></script>
+	<script src="{{ asset('dist/js/libs/jsvectormap/dist/maps/world-merc.js') }}"></script>
+	
+	<script src="{{ asset('dist/js/tabler.min.js') }}"></script>
+	<script src="{{ asset('dist/js/demo.min.js') }}"></script>
+
+	<!-- DataTables Script -->
+	<script>
+		var table = new DataTable('#moviesTable', {
+			paging: true,
+			searching: true,
+			language: {
+				url: 'https://cdn.datatables.net/plug-ins/2.1.8/i18n/id.json', // Agar tampilan menjadi bahasa Indonesia
+			},
+		});
+	</script>
+
     <script>
       // @formatter:off
       document.addEventListener("DOMContentLoaded", function () {

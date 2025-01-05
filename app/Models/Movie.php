@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Movie extends Model
 {
@@ -19,12 +20,13 @@ class Movie extends Model
         'genre_id'
     ];
 
-    protected static function boot()
+    public function genre(): BelongsTo
     {
-        parent::boot();
+        return $this->belongsTo(Genre::class);
+    }
 
-        static::creating(function ($model) {
-            $model->id = Str::uuid();
-        });
+    public function castMovies(): HasMany
+    {
+        return $this->hasMany(CastMovie::class);
     }
 }

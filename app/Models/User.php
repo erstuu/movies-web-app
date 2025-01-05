@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -46,12 +47,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function boot()
+    public function role(): BelongsTo
     {
-        parent::boot();
+        return $this->belongsTo(Role::class);
+    }
 
-        static::creating(function ($model) {
-            $model->id = Str::uuid();
-        });
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
     }
 }

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Genre extends Model
 {
@@ -13,12 +12,8 @@ class Genre extends Model
 
     protected $fillable = ['name'];
 
-    protected static function boot()
+    public function movies()
     {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->id = Str::uuid();
-        });
+        return $this->hasMany(Movie::class);
     }
 }
