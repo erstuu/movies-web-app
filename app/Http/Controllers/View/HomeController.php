@@ -12,6 +12,6 @@ class HomeController extends Controller
     {
         $movies = Movie::with('genre')->get();
 
-        return view('home', compact('movies'));
+        return view('home', compact('movies')); 
     }
 }

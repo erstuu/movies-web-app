@@ -14,7 +14,7 @@ class DashBoardController extends Controller
         $movies = Movie::all();
         $genres = Genre::all();
 
-        return view('dashboard', compact('movies', 'genres'));
+        return view('dashboard', compact('movies', 'genres')); 
     }
 
     public function insert(Request $request)

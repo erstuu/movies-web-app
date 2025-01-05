@@ -12,7 +12,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="subheader mb-2">{{ $movie->year }}</div>
                             </div>
-                            <div class="h1 mb-2">{{ $movie->title }}</div>
+                            <div class="h1 mb-2">{{ $movie->title }}</div> 
                             <div class="d-flex mb-1">
                                 <div class="p">{{ $movie->synopsis }}</div>
                             </div>
