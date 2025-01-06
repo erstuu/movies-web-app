@@ -18,4 +18,7 @@ use App\Http\Controllers\View\HomeController;
 Route::get('/',[HomeController::class, 'index']);
 
 Route::get('/dashboard', [DashBoardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard/movie/{id}/edit', [DashBoardController::class, 'edit'])->name('dashboard.movie.edit');
 Route::post('/dashboard/movie', [DashBoardController::class, 'insert'])->name('dashboard.movie.insert');
+Route::put('/dashboard/movie/{id}', [DashBoardController::class, 'update'])->name('dashboard.movie.update');
+Route::delete('/dashboard/movie/{id}', [DashBoardController::class, 'delete'])->name('dashboard.movie.delete');
