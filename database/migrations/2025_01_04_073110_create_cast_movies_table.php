@@ -14,9 +14,15 @@ return new class extends Migration
         Schema::create('cast_movies', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('movie_id');
-            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('movie_id')
+                ->references('id')
+                ->on('movies')
+                ->onDelete('cascade');
             $table->uuid('cast_id');
-            $table->foreign('cast_id')->references('id')->on('casts');
+            $table->foreign('cast_id')
+                ->references('id')
+                ->on('casts')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
